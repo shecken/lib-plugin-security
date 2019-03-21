@@ -1,0 +1,14 @@
+{
+  "autoload" : {
+    "psr-4" : {
+      "CaT\\Security\\" : ["./classes", "./tests"]
+    }
+  },
+  "config" : {
+    "autoloader-suffix" : "Security"
+  },
+  "require-dev" : {
+    "sensiolabs/security-checker": "^5.0",
+    "roave/security-advisories": "dev-master"
+  }
+}
