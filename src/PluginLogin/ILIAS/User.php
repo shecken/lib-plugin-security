@@ -2,11 +2,13 @@
 
 /* Copyright (c) 2018 Stefan Hecken <stefan.hecken@concepts-and-training.de> */
 
-declare(strict_type=1);
+declare(strict_types=1);
 
-namespace CaT\Security\PluginLogin;
+namespace CaT\Security\PluginLogin\ILIAS;
 
-class User
+use CaT\Security\PluginLogin\AuthObject;
+
+class User implements AuthObject
 {
 	/**
 	 * @var string
@@ -18,7 +20,7 @@ class User
 	 	$this->username = $username;
 	 }
 
-	 public function getUsername(): string
+	 public function getAuthValue(): string
 	 {
 	 	return $this->username;
 	 }

@@ -16,7 +16,7 @@ class ComposerStaticInitSecurity
     public static $prefixDirsPsr4 = array (
         'CaT\\Security\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes',
+            0 => __DIR__ . '/../..' . '/src',
             1 => __DIR__ . '/../..' . '/tests',
         ),
     );

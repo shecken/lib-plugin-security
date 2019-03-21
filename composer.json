@@ -1,7 +1,7 @@
 {
   "autoload" : {
     "psr-4" : {
-      "CaT\\Security\\" : ["./classes", "./tests"]
+      "CaT\\Security\\" : ["./src", "./tests"]
     }
   },
   "config" : {

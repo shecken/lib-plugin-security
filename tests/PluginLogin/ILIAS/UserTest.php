@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-namespace CaT\Security\PluginLogin
+namespace CaT\Security\PluginLogin\ILIAS;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +16,6 @@ class UserTest extends TestCase
 		$user = new User($username);
 
 		$this->assertInstanceOf(User::class, $user);
-		$this->assertEquals($username, $user->getUsername());
+		$this->assertEquals($username, $user->getAuthValue());
 	}
 }
