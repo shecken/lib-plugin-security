@@ -13,9 +13,9 @@ class UserTest extends TestCase
 	public function test_create_instance()
 	{
 		$username = "gluck";
-		$user = new User($username);
+		$user = new ilUser($username);
 
-		$this->assertInstanceOf(User::class, $user);
-		$this->assertEquals($username, $user->getAuthValue());
+		$this->assertInstanceOf(ilUser::class, $user);
+		$this->assertEquals($username, $user->getUsername());
 	}
 }

@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 namespace CaT\Security\PluginLogin;
 
-interface AuthObject
+interface User
 {
-	public function getAuthValue(): string;
+	public function getUsername(): string;
 }

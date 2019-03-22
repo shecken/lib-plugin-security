@@ -51,7 +51,7 @@ EOT;
 		$ret = [];
 
 		while($row = $this->db->fetchAssoc($res)) {
-			$ret[] = new User($row["username"]);
+			$ret[] = new ilUser($row["username"]);
 		}
 
 		return $ret;

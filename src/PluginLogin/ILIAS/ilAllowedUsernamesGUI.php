@@ -29,7 +29,7 @@ class ilAllowedUsernamesGUI implements AllowedUsernamesGUI
 	/**
 	 * @var string
 	*/
-	protected $autcomplete_link;
+	protected $autocomplete_link;
 	/**
 	 * @var \Closure
 	*/
@@ -44,7 +44,7 @@ class ilAllowedUsernamesGUI implements AllowedUsernamesGUI
 		string $save_cmd,
 		string $cancel_cmd,
 		string $post_input,
-		string $autcomplete_link,
+		string $autocomplete_link,
 		\Closure $txt,
 		array $values
 	) {
@@ -52,7 +52,7 @@ class ilAllowedUsernamesGUI implements AllowedUsernamesGUI
 		$this->save_cmd = $save_cmd;
 		$this->cancel_cmd = $cancel_cmd;
 		$this->post_input = $post_input;
-		$this->autcomplete_link = $autcomplete_link;
+		$this->autocomplete_link = $autocomplete_link;
 		$this->txt = $txt;
 		$this->values = $values;
 	}
@@ -66,7 +66,7 @@ class ilAllowedUsernamesGUI implements AllowedUsernamesGUI
 		$ti = new \ilTextInputGUI($this->txt("usernames"), $this->post_input);
 		$ti->setInfo($this->txt("usernames_info"));
 		$ti->setMulti(true);
-		$ti->setDataSource($this->autcomplete_link);
+		$ti->setDataSource($this->autocomplete_link);
 		$form->addItem($ti);
 
 		$form->addCommandButton($this->save_cmd, $this->txt("save"));

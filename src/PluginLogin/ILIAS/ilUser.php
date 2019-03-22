@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 namespace CaT\Security\PluginLogin\ILIAS;
 
-use CaT\Security\PluginLogin\AuthObject;
+use CaT\Security\PluginLogin\User;
 
-class User implements AuthObject
+class ilUser implements User
 {
 	/**
 	 * @var string
@@ -20,7 +20,7 @@ class User implements AuthObject
 	 	$this->username = $username;
 	 }
 
-	 public function getAuthValue(): string
+	 public function getUsername(): string
 	 {
 	 	return $this->username;
 	 }
