@@ -1,4 +1,17 @@
 {
+  "name": "conceptsandtraining/lib-plugin-security",
+  "version": "v0.1",
+  "type": "library",
+  "description": "Library with security options for ilias plugin konfiguration",
+  "license": [
+      "GPL-3.0-or-later"
+  ],
+  "authors": [
+    {
+      "name": "Stefan Hecken",
+      "email": "stefan.hecken@concepts-and-training.de"
+    }
+  ],
   "autoload" : {
     "psr-4" : {
       "CaT\\Security\\" : ["./src", "./tests"]
