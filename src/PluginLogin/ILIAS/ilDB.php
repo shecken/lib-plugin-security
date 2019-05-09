@@ -6,13 +6,20 @@ declare(strict_types=1);
 
 namespace CaT\Security\PluginLogin\ILIAS;
 
+use CaT\Security\PluginLogin\DB;
+
 class ilDB implements DB
 {
 	const TABLE_NAME = "allowed_usernames";
 
+	/**
+	 * @var \ilDBInterface
+	 */
+	protected $db
+
 	public function __construct(\ilDBInterface $db)
 	{
-		$this->db = $db
+		$this->db = $db;
 	}
 
 	/**
@@ -39,7 +46,7 @@ class ilDB implements DB
 	 */
 	public function selectUsernames(string $plugin): array
 	{
-		$table = $this->db->quote(self::TABLE_NAME, "text");
+		$table = self::TABLE_NAME;
 		$plugin = $this->db->quote($plugin, "text");
 		$query = <<<EOT
 SELECT username
@@ -62,7 +69,7 @@ EOT;
 	 */
 	public function checkUsername(string $username, string $plugin): bool
 	{
-		$table = $this->db->quote(self::TABLE_NAME, "text");
+		$table = self::TABLE_NAME;
 		$plugin = $this->db->quote($plugin, "text");
 		$username = $this->db->quote($username, "text");
 		$query = <<<EOT
@@ -81,7 +88,7 @@ EOT;
 	 */
 	public function loginEnabled(string $plugin): bool
 	{
-		$table = $this->db->quote(self::TABLE_NAME, "text");
+		$table = self::TABLE_NAME;
 		$plugin = $this->db->quote($plugin, "text");
 		$query = <<<EOT
 SELECT count(username) AS cnt
@@ -90,7 +97,7 @@ WHERE plugin = $plugin
 EOT;
 
 		$res = $this->db->query($query);
-		$row = $this->db->fetchAssoc();
+		$row = $this->db->fetchAssoc($res);
 		return $row["cnt"] > 0;
 	}
 
@@ -99,14 +106,14 @@ EOT;
 	 */
 	public function deleteFor(string $plugin)
 	{
-		$table = $this->db->quote(self::TABLE_NAME, "text");
+		$table = self::TABLE_NAME;
 		$plugin = $this->db->quote($plugin, "text");
 $query = <<<EOT
 DELETE FROM $table
 WHERE plugin = $plugin
 EOT;
 
-		$thid->db->manipulate($query);
+		$this->db->manipulate($query);
 	}
 
 	public function createTable()
@@ -114,9 +121,9 @@ EOT;
 		if(!$this->db->tableExists(self::TABLE_NAME)) {
 			$fields = [
 				"username" => [
-					"type" => "integer",
-					"length"	=> 4,
-					"notnull"	=> true
+					"type" => "text",
+					"length" => 80,
+					"notnull" => true
 				],
 				"plugin" => [
 					"type" => "text",
@@ -130,6 +137,11 @@ EOT;
 
 	public function addPrimaryKey()
 	{
-		$this->db->addPrimaryKey(self::TABLE_NAME, array("username", "plugin"));
+		try {
+			$this->db->addPrimaryKey(self::TABLE_NAME, array("username", "plugin"));
+		} catch (\PDOException $e) {
+			$this->db->dropPrimaryKey(self::TABLE_NAME);
+			$this->db->addPrimaryKey(self::TABLE_NAME, array("username", "plugin"));
+		}
 	}
 }

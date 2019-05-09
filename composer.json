@@ -1,6 +1,6 @@
 {
   "name": "conceptsandtraining/lib-plugin-security",
-  "version": "v0.0.2",
+  "version": "v0.0.3",
   "type": "library",
   "description": "Library with security options for ilias plugin konfiguration",
   "license": [

@@ -10,7 +10,7 @@ interface DB
 {
 	public function addUsername(string $username, string $plugin);
 	/**
-	 * @return AuthObject
+	 * @return User[]
 	 */
 	public function selectUsernames(string $plugin): array;
 	public function checkUsername(string $username, string $plugin): bool;
